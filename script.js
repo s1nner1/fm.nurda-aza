@@ -27,7 +27,9 @@ function logout() {
 }
 
 // Функция для отправки сообщения
-function sendMessage() {
+function sendMessage(event) {
+    event.preventDefault(); // Останавливаем стандартное поведение формы (если есть)
+    
     const messageInput = document.getElementById('message-input');
     const messageList = document.getElementById('message-list');
     
@@ -37,8 +39,8 @@ function sendMessage() {
         newMessage.textContent = messageInput.value;
         
         messageList.appendChild(newMessage);
-        messageInput.value = ''; // Очистка поля ввода
-        messageList.scrollTop = messageList.scrollHeight; // Прокрутка вниз
+        
+        // Не очищаем поле ввода
         saveMessages(); // Сохранение сообщений в localStorage
     }
 }
